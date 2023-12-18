@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 // Set up multer for handling file uploads
 const storage = multer.diskStorage({
-    destination: 'uploads/',
+    destination: 'public/uploads/',
     filename: function (req, file, cb) {
         cb(null, file.originalname);
     }
@@ -26,7 +26,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 });
 
 // Serve uploaded images
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('public/uploads'));
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
